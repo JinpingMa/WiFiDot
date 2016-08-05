@@ -1,6 +1,6 @@
 /* GET home page. */
 module.exports.about = function (req, res) {
-	res.render('index', {
+	res.render('generic-text', {
 		title: 'About'
 	});
 };
