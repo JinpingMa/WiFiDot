@@ -35,4 +35,5 @@ process.on('SIGINT', function(){
   });
 });
 
+require('./locations');
 
