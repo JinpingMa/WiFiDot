@@ -17,14 +17,14 @@ var reviewSchema = new mongoose.Schema({
   author: String,
   rating: {
     type: Number,
-    "default": 0,
+    required: true,
     min: 0,
     max: 5
   },
   reviewText: String,
   createdOn: {
     type: Date,
-    "default": true
+    "default": Date.now
   }
 });
 
