@@ -5,6 +5,8 @@ var dbURI = 'mongodb://localhost/WiFiDot';
 //if (process.env.NODE_ENV === 'production') {
 //  dbURI = process.env.MONGOLAB_URI;
 //}
+//plug in promise ,solve promise deprecated!!!!
+mongoose.Promise = global.Promise;
 
 mongoose.connect(dbURI);
 
