@@ -11,11 +11,4 @@ router.get('/location/review/new', ctrlLocations.addReview);
 /* Other pages */
 router.get('/about', ctrlOthers.about);
 
-/* GET home page. 
-router.get('/', function (req, res, next) {
-	res.render('index', {
-		title: 'Mypage'
-	});
-});*/
-
 module.exports = router;
