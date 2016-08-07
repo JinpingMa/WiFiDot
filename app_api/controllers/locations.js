@@ -18,7 +18,7 @@ module.exports.locationsCreate = function(req, res) {
 
 //get a location by the id  (/api/locations/:locationid)
 module.exports.locationsReadOne = function(req, res) {
-  console.log('Finding location details ',req.params);
+  console.log('Finding location details',req.params);
   if (req.params && req.params.locationid) {
     Loc
       .findById(req.params.locationid)
