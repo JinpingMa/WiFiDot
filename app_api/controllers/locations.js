@@ -18,6 +18,7 @@ module.exports.locationsCreate = function(req, res) {
 
 //get a location by the id  (/api/locations/:locationid)
 module.exports.locationsReadOne = function(req, res) {
+  console.log('Finding location details ',req.params);
   if (req.params && req.params.locationid) {
     Loc
       .findById(req.params.locationid)
@@ -28,12 +29,15 @@ module.exports.locationsReadOne = function(req, res) {
           });
           return;
         } else if (err) {
+          console.log(err);
           sendJsonRespongse(res, 404, err);
           return;
         }
+        console.log(location);
         sendJsonRespongse(res, 200, location);
     });  
   } else {
+    console.log('No locationid specified');
     sendJsonRespongse(res, 404, {
       "message": "No locationid in request"
     });
