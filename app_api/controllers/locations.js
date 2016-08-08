@@ -169,5 +169,21 @@ module.exports.locationsUpdateOne = function(req, res) {
 
 // delete  (/api/locations/:locationid)
 module.exports.locationsDeleteOne = function(req, res) {
-  sendJsonResponse(res, 200, {"status": "success"});
+  var locationid = req.params.locationid;
+  if (locationid) {
+    Loc
+      .findByIdAndRemove(locationid)
+      .exec(
+        function(err, location) {
+          if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+          }
+          sendJsonResponse(res, 204, null);
+        });
+  } else {
+    sendJsonResponse(res, 404, {
+      "message": "No locationid"
+    });
+  }
 };
