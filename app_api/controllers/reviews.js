@@ -158,7 +158,7 @@ module.exports.reviewsUpdateOne = function(req, res) {
           return;
         }
         if (location.reviews && location.reviews.length > 0) {
-          thisReview = location.reviews.id(req.params.reviewsid);
+          thisReview = location.reviews.id(req.params.reviewid);
           if (!thisReview) {
             sendJsonResponse(res, 404, {
               "message": "reviewid not found"
