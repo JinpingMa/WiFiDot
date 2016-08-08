@@ -24,18 +24,19 @@ var theEarth = (function() {
 module.exports.locationsListByDistance = function(req, res) {
   var lng = parseFloat(req.query.lng);
   var lat = parseFloat(req.query.lat);
+  var maxDistance = parseFloat(req.query.maxDistance);
   var point = {
     type: "Point",
     coordinates: [lng, lat]
   };
   var geoOptions = {
     spherical: true,
-    maxDistance: theEarth.getRadsFromDistance(20),
+    maxDistance: theEarth.getRadsFromDistance(maxDistance),
     num: 10
   };
   if (!lng || !lat || !maxDistance) {
     console.log('locationsListByDistance missing params');
-    sendJsonRespongse(res, 404, {
+    sendJsonResponse(res, 404, {
       "message": "lng,lat and maxDistance query parameters are all required"
     });
     return;
@@ -179,7 +180,9 @@ module.exports.locationsDeleteOne = function(req, res) {
             sendJsonResponse(res, 404, err);
             return;
           }
-          sendJsonResponse(res, 204, null);
+          sendJsonResponse(res, 200, {
+            "message": "delete successfully"
+          });
         });
   } else {
     sendJsonResponse(res, 404, {
