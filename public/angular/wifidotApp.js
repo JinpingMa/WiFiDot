@@ -33,12 +33,20 @@ var ratingStars = function () {
 };
 
 var locationListCtrl = function ($scope, wifidotData) {
-  $scope.data = {locations : wifidotData };
+  $scope.message = "Searching for nearby places";
+  wifidotData
+    .success(function(data) {
+      $scope.message = data.length > 0 ? "" : "No locations found";
+      $scope.data = { locations : data },
+    })
+    .error(function (e) {
+      $scope.message = "Sorry,something's gone wrong ";
+    });
 };
 
-
-var wifidotData = function () {
-  return [{
+var wifidotData = function ($http) {
+  return $http.get('/api/locations?lng=-0.79&lat=51.3&maxDistance=20');
+  /*return [{
       name: 'Burger Queen',
       address: '125 High Street, Reading, RG6 1PS',
       rating: 3,
@@ -73,7 +81,7 @@ var wifidotData = function () {
       facilities: ['Hot drinks', 'Food', 'Premium wifi'],
       distance: '2.3654',
       _id: '5370a35f2536f6785f8dfb6a'
-    }];
+    }];*/
 };
 
 angular
