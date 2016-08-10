@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app='wifidotApp')
   head
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title= title
@@ -25,7 +25,7 @@ html
         .row
           .col-xs-12
             small &copy; Hyperbola 2016
-    
+block scripts    
     script(src='/angular/angular.min.js')
     script(src='/angular/wifidotApp.js')
     script(src='/javascripts/jquery.min.js')
