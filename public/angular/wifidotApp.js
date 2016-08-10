@@ -32,16 +32,44 @@ var ratingStars = function () {
   };
 };
 
-var locationListCtrl = function ($scope, wifidotData) {
-  $scope.message = "Searching for nearby places";
-  wifidotData
+var geolocation = function () {
+  var getPosition = function (cbSuccess, cbError, cbNoGeo) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(cbSuccess, cbError);
+    }
+    else {
+      cbNoGeo();
+    };
+  };
+  return {
+    getPosition : getPosition
+  };
+};
+
+var locationListCtrl = function ($scope, wifidotData, geolocation) {
+  $scope.message = "Checking your location";
+  $scope.getData = function (position) {
+    $.scopte.message = "Search for nearby places";
+    wifidotData
     .success(function(data) {
       $scope.message = data.length > 0 ? "" : "No locations found";
-      $scope.data = { locations : data },
+      $scope.data = { locations : data };
     })
     .error(function (e) {
       $scope.message = "Sorry,something's gone wrong ";
     });
+  };
+  $scope.showError = function (error) {
+    $scope.$apply(function() {
+      $scope.message = error.message;
+    });
+  };
+  $scope.noGeo = function () {
+    $scope.$apply(function() {
+      $scope.message = "Geolocation not supported by this brower.";
+    });
+  } ;
+  geolocation.getPosition($scope.getData,$scope.showError,$scope.noGeo);
 };
 
 var wifidotData = function ($http) {
@@ -89,4 +117,5 @@ angular
   .controller('locationListCtrl', locationListCtrl)
   .filter('formatDistance', formatDistance)
   .directive('ratingStars', ratingStars)
-  .service('wifidotData', wifidotData);
+  .service('wifidotData', wifidotData)
+  .service('geolocation', geolocation);
