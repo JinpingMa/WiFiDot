@@ -37,9 +37,8 @@ var locationListCtrl = function ($scope, wifidotData) {
 };
 
 
-var locationListCtrl = function ($scope) {
-	$scope.data = {
-    locations: [{
+var wifidotData = function () {
+  return [{
       name: 'Burger Queen',
       address: '125 High Street, Reading, RG6 1PS',
       rating: 3,
@@ -74,7 +73,7 @@ var locationListCtrl = function ($scope) {
       facilities: ['Hot drinks', 'Food', 'Premium wifi'],
       distance: '2.3654',
       _id: '5370a35f2536f6785f8dfb6a'
-    }]};
+    }];
 };
 
 angular
