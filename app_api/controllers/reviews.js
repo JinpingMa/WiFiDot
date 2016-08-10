@@ -29,6 +29,7 @@ module.exports.reviewsCreate = function(req, res) {
 };
 
 var doAddReview = function(req, res, location) {
+  console.log(req.body);
   if (!location) {
     sendJsonResponse(res, 404, "locationid not found");
   } else {

@@ -65,7 +65,7 @@ module.exports.locationsListByDistance = function(req, res) {
 //mongodb用mongoose存数据时，非required选项，
 //必须输入空格(null也不行)，才能识别，否则会出现ValidatorError
 module.exports.locationsCreate = function(req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   Loc.create({
     name: req.body.name,
     address: req.body.address,
@@ -95,7 +95,7 @@ module.exports.locationsCreate = function(req, res) {
 
 //get a location by the id  (/api/locations/:locationid)
 module.exports.locationsReadOne = function(req, res) {
-  console.log('Finding location details',req.params);
+  //console.log('Finding location details',req.params);
   if (req.params && req.params.locationid) {
     Loc
       .findById(req.params.locationid)

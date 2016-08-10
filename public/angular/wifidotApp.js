@@ -39,7 +39,7 @@ var geolocation = function () {
     }
     else {
       cbNoGeo();
-    };
+    }
   };
   return {
     getPosition : getPosition
@@ -48,32 +48,44 @@ var geolocation = function () {
 
 var locationListCtrl = function ($scope, wifidotData, geolocation) {
   $scope.message = "Checking your location";
+
   $scope.getData = function (position) {
-    $.scopte.message = "Search for nearby places";
-    wifidotData
+    var lat = position.coords.latitude,
+        lng = position.coords.longitude;
+    $scope.message = "Search for nearby places";
+    wifidotData.locationByCoords(lat, lng)
     .success(function(data) {
-      $scope.message = data.length > 0 ? "" : "No locations found";
+      $scope.message = data.length > 0 ? "" : "No locations found nearby";
       $scope.data = { locations : data };
     })
     .error(function (e) {
-      $scope.message = "Sorry,something's gone wrong ";
+      $scope.message = "Sorry,something's gone wrong, please try again later";
     });
   };
+
   $scope.showError = function (error) {
     $scope.$apply(function() {
       $scope.message = error.message;
     });
   };
+
   $scope.noGeo = function () {
     $scope.$apply(function() {
       $scope.message = "Geolocation not supported by this brower.";
     });
-  } ;
+  };
   geolocation.getPosition($scope.getData,$scope.showError,$scope.noGeo);
 };
 
 var wifidotData = function ($http) {
-  return $http.get('/api/locations?lng=-0.79&lat=51.3&maxDistance=20');
+  var locationByCoords = function(lat,lng){
+    return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=20000000000');
+  };
+  return {
+    locationByCoords : locationByCoords
+  };
+};
+  
   /*return [{
       name: 'Burger Queen',
       address: '125 High Street, Reading, RG6 1PS',
@@ -110,7 +122,6 @@ var wifidotData = function ($http) {
       distance: '2.3654',
       _id: '5370a35f2536f6785f8dfb6a'
     }];*/
-};
 
 angular
   .module('wifidotApp')
