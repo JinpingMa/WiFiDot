@@ -123,7 +123,7 @@ module.exports.addReview = function(req, res){
 module.exports.doAddReview = function(req, res) {
   var requestOptions, path, locationid, postdata;
   locationid = req.params.locationid;
-  path = "/api/locations/" + locationid + "/review";
+  path = "/api/locations/" + locationid + "/reviews";
   postdata = {
     author: req.body.name,
     rating: parseInt(req.body.rating, 10),
