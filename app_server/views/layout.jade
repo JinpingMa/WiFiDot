@@ -19,15 +19,19 @@ html(ng-app='wifidotApp')
             li
               a(href='/about/') About
     .container
-      block content
+      div(ng-view)
+        block content
       
       footer
         .row
           .col-xs-12
             small &copy; Hyperbola 2016
-block scripts    
+  block scripts    
     script(src='/angular/angular.min.js')
+    script(src='/lib/angular-route.min.js')
     script(src='/angular/wifidotApp.js')
+    script(src='/app.js')
+    script(src='/home/home.controller.js')
     script(src='/javascripts/jquery.min.js')
     script(src='/bootstrap/js/bootstrap.min.js')
     script(src='/javascripts/validation.js')
