@@ -1,4 +1,5 @@
 (function () {
+
   angular
     .module('wifidotApp')
     .service('geolocation', geolocation);
@@ -16,4 +17,5 @@
       getPosition : getPosition
     };
   }
+  
 })();
