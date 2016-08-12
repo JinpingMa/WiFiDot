@@ -18,27 +18,28 @@ var app = express();
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'jade');
 
-var appClientFiles = [
-  'app_client/app.js',
-  'app_client/home/home.controller.js',
-  'app_client/common/services/geolocation.service.js',
-  'app_client/common/services/wifidotData.service.js',
-  'app_client/common/filters/formatDistance.filter.js',
-  'app_client/common/directives/ratingStars/ratingStars.directive.js'
-  ];
-var uglified = uglifyJs.minify(appClientFiles, { compress : false });
-//console.log(uglified.code);
+//use uglifyjs ganarate wifidot.min.js,reduce the number of js file.
+// var appClientFiles = [
+//   'app_client/app.js',
+//   'app_client/home/home.controller.js',
+//   'app_client/common/services/geolocation.service.js',
+//   'app_client/common/services/wifidotData.service.js',
+//   'app_client/common/filters/formatDistance.filter.js',
+//   'app_client/common/directives/ratingStars/ratingStars.directive.js'
+//   ];
+// var uglified = uglifyJs.minify(appClientFiles, { compress : false });
+// //console.log(uglified.code);
 
-fs.writeFile('public/angular/wifidot.min.js', uglified.code, function (err) {
-  if(err) {
-	  console.log(err);
-  } else {
-		console.log("Script generated and saved:", 'wifidot.min.js');
-  }
-});
+// fs.writeFile('public/angular/wifidot.min.js', uglified.code, function (err) {
+//   if(err) {
+// 	  console.log(err);
+//   } else {
+// 		console.log("Script generated and saved:", 'wifidot.min.js');
+//   }
+// });
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
