@@ -1,8 +1,11 @@
-angular
-  .module('wifidotApp')
-  .directive('ratingStars', ratingStars);
 
-function ratingStars () {
+(function () {
+
+  angular
+    .module('wifidotApp')
+    .directive('ratingStars', ratingStars);
+
+  function ratingStars () {
 	return {
     restrict: 'EA',
     scope: {
@@ -11,3 +14,5 @@ function ratingStars () {
     templateUrl: '/common/directives/ratingStars/ratingStars.template.html'
   };
 }
+
+})();
