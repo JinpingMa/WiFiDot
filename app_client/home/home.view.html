@@ -1,12 +1,7 @@
-<div id="banner" class="page-header">
-  <div class="row">
-    <div class="col-lg-6"></div>
-      <h1>
-        {{ vm.pageHeader.title }}
-       <small>{{ vm.pageHeader.strapline }}</small>
-      </h1>
-  </div>
-</div>
+<navigation></navigation>
+
+<div class="container"></div>
+<page-header content="vm.pageHeader"></page-header>
 
 <div class="row">
   <div class="col-xs-12 col-sm-8">
@@ -32,4 +27,7 @@
   <div class="col-xs-12 col-sm-4">
     <p class="lead">{{ vm.sidebar.content }}</p>
   </div>
+
+  <footer-genetic></footer-genetic>
+  
 </div>
