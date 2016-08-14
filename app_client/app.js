@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('wifidotApp', ['ngRoute']);
+  angular.module('wifidotApp', ['ngRoute', 'ngSanitize']);
 
   function config ($routeProvider, $locationProvider) {
 	  $routeProvider
