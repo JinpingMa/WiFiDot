@@ -6,6 +6,10 @@
 
   homeCtrl.$inject = ['$scope', 'wifidotData', 'geolocation'];
   function homeCtrl ($scope, wifidotData, geolocation) {
+    // Nasty IE9 redirect hack (not recommended)
+    if (window.location.pathname !== '/') {
+      window.location.href = '/#' + window.location.pathname;
+    }
     var vm = this;
     vm.pageHeader = {
       title: 'WiFiDot',

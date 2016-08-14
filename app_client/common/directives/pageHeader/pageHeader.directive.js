@@ -8,7 +8,7 @@
 	return {
     restrict: 'EA',
     scope: {
-      thisRating : '=content'
+      content : '=content'
     },
     templateUrl: '/common/directives/pageHeader/pageHeader.template.html'
   };

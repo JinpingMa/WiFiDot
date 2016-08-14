@@ -22,6 +22,7 @@ app.set('view engine', 'jade');
 var appClientFiles = [
   'app_client/app.js',
   'app_client/home/home.controller.js',
+  'app_client/about/about.controller.js',
   'app_client/common/services/geolocation.service.js',
   'app_client/common/services/wifidotData.service.js',
   'app_client/common/filters/formatDistance.filter.js',
