@@ -4,8 +4,8 @@
     .module('wifidotApp')
     .controller('locationDetailCtrl', locationDetailCtrl);
 
-  locationDetailCtrl.$inject = ['$routeParams', 'wifidotData'];
-  function locationDetailCtrl ($routeParams, wifidotData) {
+  locationDetailCtrl.$inject = ['$routeParams', '$modal', 'wifidotData'];
+  function locationDetailCtrl ($routeParams, $modal, wifidotData) {
     var vm = this;
     vm.sidebar = {
       context: 'is on WiFiDot because it has accessible wifi and spance to sit down with your laptop and get some work done.',
@@ -19,11 +19,31 @@
         vm.pageHeader = {
           title: vm.data.location.name
         };
-        console.log(vm.data.location);
       }) 
       .error(function (e) {
         console.log(e);
       });
+
+      vm.popupReviewForm = function () {
+        //alert("Let's add a review!");
+        var modalInstance = $modal.open({
+          templateUrl: '/reviewModal/reviewModal.view.html',
+          controller: 'reviewModalCtrl as vm',
+          resolve: {
+            locationData : function () {
+              return {
+                locationid : vm.locationid,
+                locationName : vm.data.location.name
+              };
+            }
+          }
+        });
+      
+        modalInstance.result.then(function (data) {
+          vm.data.location.reviews.push(data);
+        });
+
+      };
     
   }
 })();

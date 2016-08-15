@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('wifidotApp', ['ngRoute', 'ngSanitize']);
+  angular.module('wifidotApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
 
   function config ($routeProvider, $locationProvider) {
 	  $routeProvider
@@ -20,6 +20,7 @@
         controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/'});
+      // use the HTML5 History API
     $locationProvider.html5Mode(true);
   }
 
