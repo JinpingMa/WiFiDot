@@ -9,6 +9,7 @@ var passport = require('passport');
 
 require('./app_api/models/db');
 require('./app_api/config/passport');
+
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
 
@@ -29,9 +30,11 @@ var appClientFiles = [
   'app_client/about/about.controller.js',
   'app_client/locationDetail/locationDetail.controller.js',
   'app_client/reviewModal/reviewModal.controller.js',
+  'app_client/auth/register/register.controller.js',
+  //'app_client/auth/login/login.controller.js',
   'app_client/common/services/geolocation.service.js',
   'app_client/common/services/wifidotData.service.js',
-  'app_client/common/services/anthentication.service.js',
+  'app_client/common/services/authentication.service.js',
   'app_client/common/filters/formatDistance.filter.js',
   'app_client/common/filters/addHtmlLineBreaks.filter.js',
   'app_client/common/directives/ratingStars/ratingStars.directive.js',
@@ -40,7 +43,7 @@ var appClientFiles = [
   'app_client/common/directives/pageHeader/pageHeader.directive.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });
-//console.log(uglified.code);
+console.log(uglified.code);
 
 fs.writeFile('public/angular/wifidot.min.js', uglified.code, function (err) {
   if(err) {
@@ -61,7 +64,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
 
-app.use(passport.initialize());
+//app.use(passport.initialize());
 
 //app.use('/', routes);
 app.use('/api', routesApi);

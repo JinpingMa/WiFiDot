@@ -24,11 +24,11 @@
         controller: 'registerCtrl',
         controllerAs: 'vm'
       })
-      .when('/login', {
-        templateUrl: '/auth/login/login.view.html',
-        controller: 'loginCtrl',
-        controllerAs: 'vm'
-      })
+      // .when('/login', {
+      //   templateUrl: '/auth/login/login.view.html',
+      //   controller: 'loginCtrl',
+      //   controllerAs: 'vm'
+      // })
       .otherwise({redirectTo: '/'});
       // use the HTML5 History API
     $locationProvider.html5Mode(true);

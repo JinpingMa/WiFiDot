@@ -1,11 +1,12 @@
 (function () {
+
 	angular
     .module('wifidotApp')
-    .service('anthetication', authentication);
+    .service('authentication', authentication);
 
-  authentication.$inject = ['$window'];
-  authentication.$inject = ['$http'];
-  function authentication ($window) {
+  authentication.$inject = ['$http', '$window'];
+  function authentication ($http, $window) {
+    
     var saveToken = function (token) {
       $window.localStorage['wifidot-token'] = token;
     };
@@ -14,24 +15,9 @@
       return $window.localStorage['wifidot-token'];
     };
 
-    var register = function(user) {
-      return $http.post('/api/register', user).success(function(data) {
-        saveToken(data.token);
-      });
-    };
-
-    var login = function(user) {
-      return $http.post('/api/login', user).success(function(data) {
-        saveToken(data.token);
-      });
-    };
-
-    var logout = function() {
-      $window.localStorage.removeItem('wifidot-token');
-    };
-
     var isLoggedIn = function() {
       var token = getToken();
+
       if(token){
         var payload = JSON.parse($window.atob(token.split('.')[1]));
         return payload.exp > Data.now() / 1000;
@@ -51,14 +37,31 @@
       }
     };
 
+    register = function(user) {
+      return $http.post('/api/register', user).success(function(data) {
+        saveToken(data.token);
+      });
+    };
+
+    login = function(user) {
+      return $http.post('/api/login', user).success(function(data) {
+        saveToken(data.token);
+      });
+    };
+
+    logout = function() {
+      $window.localStorage.removeItem('wifidot-token');
+    };
+
     return {
-      saveToken: saveToken,
-      getToken: getToken,
-      register: register,
-      login: login,
-      logout: logout,
-      isLoggedIn: isLoggedIn,
-      currentUser: currentUser
+      currentUser : currentUser,
+      saveToken : saveToken,
+      getToken : getToken,
+      isLoggedIn : isLoggedIn,
+      register : register,
+      login : login,
+      logout : logout
+      
     };
   }
 })();
