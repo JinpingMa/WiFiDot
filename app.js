@@ -31,6 +31,7 @@ var appClientFiles = [
   'app_client/reviewModal/reviewModal.controller.js',
   'app_client/common/services/geolocation.service.js',
   'app_client/common/services/wifidotData.service.js',
+  'app_client/common/services/anthentication.service.js',
   'app_client/common/filters/formatDistance.filter.js',
   'app_client/common/filters/addHtmlLineBreaks.filter.js',
   'app_client/common/directives/ratingStars/ratingStars.directive.js',
@@ -78,6 +79,14 @@ app.use(function (req, res, next) {
 });
 
 // error handlers
+//catch unauthorised errors
+app.use(function (err, req, res, next) {
+	if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({ "message": err.name + ": " + err.message });
+  }
+});
+
 
 // development error handler
 // will print stacktrace

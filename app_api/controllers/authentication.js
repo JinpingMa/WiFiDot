@@ -41,7 +41,7 @@ module.exports.login = function(req, res) {
     });
     return;
   }
-  password.authenticate('local', function(err, user, info) {
+  passport.authenticate('local', function(err, user, info) {
     var token;
     if(err) {
       sendJsonResponse(res, 404, err);
