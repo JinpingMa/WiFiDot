@@ -20,7 +20,6 @@ module.exports.reviewsCreate = function (req, res) {
                     if (err) {
                         sendJsonResponse(res, 400, err);
                     } else {
-                        //console.log(userName + "in review.js");
                         doAddReview(req, res, location, userName);
                     }
                 });
@@ -35,7 +34,6 @@ module.exports.reviewsCreate = function (req, res) {
 
 var getAuthor = function (req, res, callback) {
     if (req.payload && req.payload.email) {
-        console.log(req.payload.email + "in review.js");
         User
             .findOne({email: req.payload.email})
             .exec(function (err, user) {
@@ -49,7 +47,6 @@ var getAuthor = function (req, res, callback) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                console.log(user);
                 callback(req, res, user.name);
             });
     } else {
