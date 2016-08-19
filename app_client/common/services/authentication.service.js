@@ -20,7 +20,7 @@
 
       if(token){
         var payload = JSON.parse($window.atob(token.split('.')[1]));
-        return payload.exp > Data.now() / 1000;
+        return payload.exp > Date.now() / 1000;
       } else {
         return false;
       }
@@ -43,8 +43,10 @@
       });
     };
 
+
     login = function(user) {
-      return $http.post('/api/login', user).success(function(data) {
+      return $http.post('/api/login', user)
+          .success(function(data) {
         saveToken(data.token);
       });
     };

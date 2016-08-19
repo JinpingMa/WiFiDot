@@ -31,19 +31,20 @@ var appClientFiles = [
   'app_client/locationDetail/locationDetail.controller.js',
   'app_client/reviewModal/reviewModal.controller.js',
   'app_client/auth/register/register.controller.js',
-  //'app_client/auth/login/login.controller.js',
+  'app_client/auth/login/login.controller.js',
   'app_client/common/services/geolocation.service.js',
   'app_client/common/services/wifidotData.service.js',
   'app_client/common/services/authentication.service.js',
   'app_client/common/filters/formatDistance.filter.js',
   'app_client/common/filters/addHtmlLineBreaks.filter.js',
+  'app_client/common/directives/navigation/navigation.controller.js',
+  'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/ratingStars/ratingStars.directive.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
-  'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/pageHeader/pageHeader.directive.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });
-console.log(uglified.code);
+//console.log(uglified.code);
 
 fs.writeFile('public/angular/wifidot.min.js', uglified.code, function (err) {
   if(err) {
