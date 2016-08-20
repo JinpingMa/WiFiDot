@@ -29,8 +29,9 @@
     var currentUser = function() {
       if(isLoggedIn()) {
         var token = getToken();
-        //var payload = JSON.parse(decodeURIComponent(escape($window.atob(token.split('.')[1]))));
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        //修复中文乱码bug
+        var payload = JSON.parse(decodeURIComponent(escape($window.atob(token.split('.')[1]))));
+        // var payload = JSON.parse($window.atob(token.split('.')[1]));
         return {
           email: payload.email,
           name: payload.name
