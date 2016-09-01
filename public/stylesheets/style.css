@@ -1,3 +1,9 @@
+#mapcontainer{
+    overflow: hidden; 
+    position: relative;
+	height: 260px; 
+	width: 100%;
+}
 .review {padding-bottom: 5px;}
 .panel-body.review-container {padding-top: 0;}
 .review-header {margin-bottom: 10px;}

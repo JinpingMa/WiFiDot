@@ -22,6 +22,24 @@
         vm.pageHeader = {
           title: vm.data.location.name
         };
+        //baidumap
+        var map = new BMap.Map("mapcontainer");
+        var point = new BMap.Point(vm.data.location.coords[0], vm.data.location.coords[1])
+        map.centerAndZoom(point, 17);
+        // 创建图标对象 
+        function addMarker(point) {   
+          var myIcon = new BMap.Icon("/marker.png", new BMap.Size(52, 51), {
+            offset: new BMap.Size(0, 0)
+          });  
+          var marker = new BMap.Marker(point, {
+            icon: myIcon
+          });
+          map.addOverlay(marker);
+        }
+        addMarker(point);
+        map.addControl(new BMap.NavigationControl()); //导航控件
+        map.addControl(new BMap.CopyrightControl()); //版权控件
+        map.enableScrollWheelZoom(true);
       }) 
       .error(function (e) {
         console.log(e);
