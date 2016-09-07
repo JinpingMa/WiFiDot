@@ -13,12 +13,16 @@
     return function (distance) {
       var numDistance, unit;
       if ((distance >= 0) && _isNumeric(distance)) {
-        if (distance > 1) {
-          numDistance = parseFloat(distance).toFixed(1);
-          unit = 'km';
-        } else {
-          numDistance = parseInt(distance * 1000, 10);
+        if (distance < 1000) {
+          numDistance = parseInt(distance, 10)
           unit = 'm';
+          // numDistance = parseFloat(distance).toFixed(1);
+          // unit = 'km';
+        } else {
+          numDistance = parseFloat(distance / 1000).toFixed(1);
+          unit = 'km';
+          // numDistance = parseInt(distance * 1000, 10);
+          // unit = 'm';
         }
         return numDistance + unit;
       } else {

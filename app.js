@@ -13,15 +13,15 @@ require('./app_api/config/passport');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
 
-var routes = require('./app_server/routes/index');
+//var routes = require('./app_server/routes/index');//app_server1
 var routesApi = require('./app_api/routes/index');
 //var users = require('./app_server/routes/users');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'app_server', 'views'));
-app.set('view engine', 'jade');
+// view engine setup   app_server2
+//app.set('views', path.join(__dirname, 'app_server', 'views'));
+//app.set('view engine', 'jade');
 
 //use uglifyjs ganarate wifidot.min.js,reduce the number of js file.
 var appClientFiles = [
@@ -67,7 +67,7 @@ app.use(express.static(path.join(__dirname, 'app_client')));
 
 app.use(passport.initialize());
 
-//app.use('/', routes);
+//app.use('/', routes);//app_server3
 app.use('/api', routesApi);
 //app.use('/users', users);
 //用下面的函数替换app.use('/', routes)，实现SPA

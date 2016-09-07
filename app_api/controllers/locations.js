@@ -5,7 +5,7 @@ var sendJsonResponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
-
+//Specify the distance in meters for GeoJSON data and in radians for legacy coordinate pairs.
 var theEarth = (function() {
   var earthRadius = 6371;//km
   var getDistanceFromRads = function(rads) {
@@ -25,13 +25,16 @@ module.exports.locationsListByDistance = function(req, res) {
   var lng = parseFloat(req.query.lng);
   var lat = parseFloat(req.query.lat);
   var maxDistance = parseFloat(req.query.maxDistance);
+  //console.log("请求的参数" + lng + lat + maxDistance + "at locations.js");
+  //MongoDB uses spherical geometry to calculate distances in meters if the specified (near) point is a GeoJSON point
   var point = {
     type: "Point",
     coordinates: [lng, lat]
   };
   var geoOptions = {
     spherical: true,
-    maxDistance: theEarth.getRadsFromDistance(maxDistance),
+    maxDistance:maxDistance,
+    //maxDistance: theEarth.getRadsFromDistance(maxDistance),
     num: 10
   };
   if ((!lng &&lng!==0) || (!lat && lat!=0) || (!maxDistance && maxDistance!=0)) {
@@ -47,8 +50,10 @@ module.exports.locationsListByDistance = function(req, res) {
       sendJsonRespongse(res, 404, err);
     } else {
       results.forEach(function(doc) {
+        //console.log("计算的距离" + doc.dis);
         locations.push({
-          distance: theEarth.getDistanceFromRads(doc.dis),
+          //distance: theEarth.getDistanceFromRads(doc.dis),
+          distance: doc.dis,
           name: doc.obj.name,
           address: doc.obj.address,
           rating: doc.obj.rating,

@@ -7,7 +7,7 @@
   wifidotData.$inject = ['$http', 'authentication'];
   function wifidotData ($http, authentication) {
     var locationByCoords = function(lat, lng){
-      return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=20000000000');
+      return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=2000');//m(danwei)
     };
 
     var locationById = function (locationid) {
