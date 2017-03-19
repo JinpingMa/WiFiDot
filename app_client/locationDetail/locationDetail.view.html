@@ -39,7 +39,8 @@
               <h2 class="panel-title">Location map</h2>
             </div>
             <div class="panel-body">
-              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ vm.data.location.coords[1] }},{{ vm.data.location.coords[0] }}&amp;zoom=17&amp;size=400x350&amp;sensor=false&amp;makers={{ vm.data.location.coords[1] }},{{ vm.data.location.coords[0] }}&amp;scale=2" class="img-responsive img-rounded" />
+              <!--<img src="http://maps.googleapis.com/maps/api/staticmap?center={{ vm.data.location.coords[1] }},{{ vm.data.location.coords[0] }}&amp;zoom=17&amp;size=400x350&amp;sensor=false&amp;makers={{ vm.data.location.coords[1] }},{{ vm.data.location.coords[0] }}&amp;scale=2" class="img-responsive img-rounded" />-->
+              <img src="http://api.map.baidu.com/staticimage/v2?ak=LRhfOlLe2FpHn5cRCHQcUlsafwdqsL3w&amp;center={{ vm.data.location.coords[0] }},{{ vm.data.location.coords[1] }}&amp;zoom=17&amp;size=400x350&amp;sensor=false&amp;markers={{ vm.data.location.coords[0] }},{{ vm.data.location.coords[1] }}&amp;markerStyles=-1,http://www.columbiasports.cn/themes/ecstore/images/dealer-map-marker.png,-1,52,51&map;scale=2" class="img-responsive img-rounded" />
             </div>
           </div>
         </div>
